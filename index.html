@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Osíris</title>
+<meta name="description" content="Prontuário de emergência acessado por aproximação. Quando o paciente não pode falar, a informação que muda conduta chega em segundos, com procedência verificável.">
+<meta name="theme-color" content="#0F6E56">
+<link rel="icon" href="assets/brasao-180.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/brasao-180.png">
+<meta property="og:title" content="Osíris">
+<meta property="og:description" content="Prontuário de emergência acessado por aproximação, com procedência verificável de cada informação.">
+<meta property="og:image" content="assets/brasao-512.png">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="topo" id="topo">
+  <div class="faixa">
+    <a class="marca" href="#topo" aria-label="Osíris, início">
+      <img src="assets/brasao-180.png" alt="" width="40" height="40">
+      <span>Osíris</span>
+    </a>
+    <nav aria-label="Seções">
+      <a href="#problema">Problema</a>
+      <a href="#funcionamento">Como funciona</a>
+      <a href="#procedencia">Procedência</a>
+      <a href="#seguranca">Segurança</a>
+      <a href="#planos">Planos</a>
+    </nav>
+    <a class="botao botao-fino" href="#contato">Falar com a equipe</a>
+  </div>
+</header>
+
+<main id="conteudo">
+
+<!-- ════════════════════════ ABERTURA ════════════════════════ -->
+<section class="abertura">
+  <div class="guilhoche guilhoche-claro" aria-hidden="true"></div>
+  <img class="selo-fundo" src="assets/brasao-512.png" alt="" aria-hidden="true">
+
+  <div class="abertura-grade">
+    <div class="abertura-texto">
+      <p class="assinatura">Prontuário de emergência</p>
+      <h1>Quando você não puder falar,<br class="quebra">nós falamos por você.</h1>
+      <p class="chamada">Alergias, condições crônicas e medicações em uso, disponíveis em segundos
+      para quem está socorrendo. Cada informação carrega de onde veio, e toda leitura fica
+      registrada.</p>
+      <div class="acoes">
+        <a class="botao" href="#funcionamento">Ver como funciona</a>
+        <a class="botao botao-vazado" href="#contato">Levar para a minha unidade</a>
+      </div>
+      <p class="rodape-abertura">Leitura por aproximação, sem instalar nada no ponto de atendimento.</p>
+    </div>
+
+    <!-- painel do socorrista -->
+    <div class="painel-area">
+      <div class="painel" id="painel" data-estado="aguardando">
+
+        <div class="painel-aguardando" id="aguardando">
+          <svg class="onda" viewBox="0 0 64 64" aria-hidden="true">
+            <path d="M22 20a18 18 0 0 1 0 24"/><path d="M30 14a28 28 0 0 1 0 36"/>
+            <path d="M38 8a38 38 0 0 1 0 48"/><circle cx="15" cy="32" r="3.2"/>
+          </svg>
+          <p class="aguardando-titulo">Pulseira do paciente</p>
+          <p class="aguardando-texto">O socorrista aproxima o próprio celular.</p>
+          <button class="botao botao-claro" id="ler" type="button">Aproximar</button>
+        </div>
+
+        <div class="painel-registro" id="registro" hidden>
+          <div class="protocolo">
+            <span class="protocolo-rotulo">Protocolo</span>
+            <span class="protocolo-numero" id="protocolo">EMG-000000</span>
+            <span class="protocolo-hora" id="hora"></span>
+          </div>
+
+          <div class="identificacao">
+            <p class="paciente">Ana Beatriz Moura</p>
+            <p class="paciente-meta">41 anos · Sangue O negativo</p>
+          </div>
+
+          <ul class="campos">
+            <li class="campo campo-grave">
+              <div class="campo-topo">
+                <span class="campo-chave">Alergia</span>
+                <span class="gravidade">Grave</span>
+              </div>
+              <p class="campo-valor">Penicilina, com choque anafilático</p>
+              <p class="selo selo-validado">Validado por Dra. P. C. Preto, CRM 241039, em 14/03/2026</p>
+            </li>
+            <li class="campo">
+              <div class="campo-topo"><span class="campo-chave">Condição</span></div>
+              <p class="campo-valor">Fibrilação atrial, em anticoagulação</p>
+              <p class="selo selo-validado">Validado por Dr. M. C. M. Netto, CRM 105947, em 02/02/2026</p>
+            </li>
+            <li class="campo">
+              <div class="campo-topo"><span class="campo-chave">Medicação</span></div>
+              <p class="campo-valor">Rivaroxabana 20 mg, uma vez ao dia</p>
+              <p class="selo selo-declarado">Informado pela paciente em 10/01/2026</p>
+            </li>
+          </ul>
+
+          <p class="auditoria" id="auditoria">Acesso gravado antes da entrega dos dados. A paciente
+          vê quem abriu, quando e sob qual protocolo.</p>
+
+          <button class="reiniciar" id="reiniciar" type="button">Ver de novo</button>
+        </div>
+      </div>
+      <p class="legenda-painel">O que aparece na tela de quem socorre. Dados de demonstração.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ PROBLEMA ════════════════════════ -->
+<section class="secao secao-creme" id="problema">
+  <div class="largura">
+    <h2>A informação existe. Ela só não chega a tempo.</h2>
+    <p class="intro">Quem chega inconsciente ao pronto-socorro chega sem prontuário. A equipe decide
+    conduta sem saber o que não pode ser prescrito, enquanto a informação está num laudo guardado,
+    em outro hospital ou com um familiar que não está ali.</p>
+
+    <div class="registro-evidencia">
+      <p class="registro-titulo">O que isso custa</p>
+      <dl>
+        <div class="linha">
+          <dt>R$ 10,6 bilhões</dt>
+          <dd>por ano em eventos adversos na rede privada<span class="fonte">IESS, 2024</span></dd>
+        </div>
+        <div class="linha">
+          <dt>203 por dia</dt>
+          <dd>novas ações judiciais por erro médico, 77,5% contra a rede privada<span class="fonte">CNJ, 2024</span></dd>
+        </div>
+        <div class="linha">
+          <dt>10,5 dias</dt>
+          <dd>de internação adicional por evento adverso<span class="fonte">IESS, 2024</span></dd>
+        </div>
+        <div class="linha destaque">
+          <dt>50%</dt>
+          <dd>é a concordância entre a alergia que o paciente relata e a que está no prontuário,
+          quanto ao tipo de reação, mesmo em serviços já informatizados<span class="fonte">Lyons et al., 2026</span></dd>
+        </div>
+      </dl>
+    </div>
+
+    <p class="arremate">O último número é o que delimita o problema. Saber que existe alergia à
+    penicilina ajuda pouco; o que muda a conduta é saber se a reação foi urticária ou choque. E é
+    exatamente aí que o registro e a realidade se separam. Digitalizar não resolve: o que falta é
+    procedência.</p>
+  </div>
+</section>
+
+<!-- ════════════════════════ FUNCIONAMENTO ════════════════════════ -->
+<section class="secao" id="funcionamento">
+  <div class="largura">
+    <h2>Como funciona</h2>
+    <p class="intro">Três movimentos. O paciente guarda, a tag aponta, o profissional abre.</p>
+
+    <ol class="passos">
+      <li>
+        <span class="passo-n">1</span>
+        <h3>O paciente cadastra o essencial</h3>
+        <p>Alergias, condições crônicas, medicações em uso, tipo sanguíneo e contatos. Pode anexar
+        laudos, e o texto é lido no próprio aparelho.</p>
+      </li>
+      <li>
+        <span class="passo-n">2</span>
+        <h3>Leva um identificador consigo</h3>
+        <p>Pulseira, cartão de carteira, adesivo de capacete ou chaveiro. Ele guarda só um código,
+        nunca o dado clínico.</p>
+      </li>
+      <li>
+        <span class="passo-n">3</span>
+        <h3>Quem socorre aproxima o celular</h3>
+        <p>O profissional autenticado recebe o bloco crítico, e só ele. O acesso é registrado antes
+        de o dado aparecer na tela.</p>
+      </li>
+    </ol>
+
+    <div class="vetores">
+      <p class="vetores-titulo">Se a pulseira não estiver lá, o prontuário continua acessível</p>
+      <table>
+        <caption class="oculto">Caminhos de acesso ao prontuário de emergência</caption>
+        <thead>
+          <tr><th scope="col">Caminho</th><th scope="col">Tempo</th><th scope="col">O que exige</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Aproximação da tag</th><td>1 segundo</td><td>Tag presente e celular com NFC</td></tr>
+          <tr><th scope="row">Código de oito caracteres</th><td>10 segundos</td><td>Alguém que saiba o código</td></tr>
+          <tr><th scope="row">Busca por CPF</th><td>30 segundos</td><td>Documento ou acompanhante</td></tr>
+          <tr><th scope="row">Integração com o sistema da unidade</th><td>automático</td><td>Integração instalada</td></tr>
+        </tbody>
+      </table>
+      <p class="vetores-nota">Os caminhos falham por motivos independentes entre si. A ausência da
+      pulseira tira velocidade, não disponibilidade.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ PROCEDÊNCIA ════════════════════════ -->
+<section class="secao secao-verde" id="procedencia">
+  <div class="guilhoche guilhoche-claro" aria-hidden="true"></div>
+  <div class="largura">
+    <p class="assinatura assinatura-clara">O diferencial</p>
+    <h2>Todo campo carrega de onde veio</h2>
+    <p class="intro intro-clara">É isso que separa um prontuário de uma ficha. Um médico não altera
+    conduta com base em informação que não sabe quem escreveu, por mais rápido que ela chegue.</p>
+
+    <div class="comparacao">
+      <article class="cartao-campo cartao-declarado">
+        <p class="cartao-selo">Autodeclarado</p>
+        <p class="cartao-valor">Alergia: penicilina</p>
+        <p class="cartao-origem">Informado pela paciente em 01/2026</p>
+        <p class="cartao-nota">Útil, mas é a palavra do paciente. A equipe sabe disso ao ler.</p>
+      </article>
+      <article class="cartao-campo cartao-validado">
+        <p class="cartao-selo">Validado</p>
+        <p class="cartao-valor">Alergia: penicilina, com choque anafilático</p>
+        <p class="cartao-origem">Dra. P. C. Preto, CRM 241039, em 14/03/2026</p>
+        <p class="cartao-nota">Revisado e assinado por profissional. É aqui que a conduta muda.</p>
+      </article>
+    </div>
+
+    <ul class="governanca">
+      <li><strong>Nada é sobrescrito.</strong> Toda alteração vira uma versão nova, com autor, registro
+      profissional e carimbo de tempo.</li>
+      <li><strong>O paciente não edita campo validado.</strong> Pode pedir correção a quem validou, e o
+      pedido fica registrado.</li>
+      <li><strong>Campo validado tem prazo de revisão.</strong> Vencido o prazo, o sistema avisa que o
+      dado pode estar desatualizado em vez de apresentá-lo como vigente.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ════════════════════════ SEGURANÇA ════════════════════════ -->
+<section class="secao" id="seguranca">
+  <div class="largura">
+    <h2>Dado de saúde pede outro padrão</h2>
+    <p class="intro">O produto trata dado pessoal sensível. As garantias abaixo são propriedades do
+    sistema, não promessas de uso.</p>
+
+    <div class="garantias">
+      <article>
+        <h3>A pulseira não guarda prontuário</h3>
+        <p>A tag carrega apenas um identificador. Perdê-la não expõe informação de saúde, e quem a
+        encontrar não lê nada com ela.</p>
+      </article>
+      <article>
+        <h3>Quem decide o acesso é o servidor</h3>
+        <p>A autorização não vive no aplicativo. Alterar o aparelho ou o código em execução não
+        amplia o que a pessoa pode ler.</p>
+      </article>
+      <article>
+        <h3>Toda leitura deixa rastro</h3>
+        <p>O acesso de emergência grava o registro antes de entregar o dado. Se a gravação falhar,
+        nada é entregue. A trilha não aceita alteração nem exclusão, por nenhum perfil.</p>
+      </article>
+      <article>
+        <h3>Só o que muda conduta</h3>
+        <p>O acesso de emergência devolve o bloco crítico, não o histórico completo. Minimização é
+        regra de projeto, não configuração.</p>
+      </article>
+      <article>
+        <h3>O paciente acompanha</h3>
+        <p>No portal, ele vê quem acessou, quando e sob qual protocolo, com o registro profissional
+        de quem abriu.</p>
+      </article>
+      <article>
+        <h3>Construído para conversar</h3>
+        <p>O modelo de dados segue o padrão HL7 FHIR, o mesmo adotado pela Rede Nacional de Dados em
+        Saúde, o que torna a integração um mapeamento e não uma reescrita.</p>
+      </article>
+    </div>
+
+    <p class="nota-legal">Bases legais declaradas: tutela da saúde em procedimento por profissionais
+    de saúde, artigo 11, inciso II, alínea f, e artigo 7º, inciso VIII da Lei Geral de Proteção de
+    Dados. O desenho de controle de acesso, auditoria e versionamento segue a Resolução CFM nº
+    1.821/2007. A certificação junto ao CFM e à SBIS está no plano e ainda não foi obtida.</p>
+  </div>
+</section>
+
+<!-- ════════════════════════ PÚBLICO ════════════════════════ -->
+<section class="secao secao-creme" id="publico">
+  <div class="largura">
+    <h2>Para quem</h2>
+    <div class="publico-grade">
+      <div>
+        <h3>Pessoas</h3>
+        <p>Quem não pode depender da própria memória nem da de um acompanhante num momento crítico.</p>
+        <ul>
+          <li>Portadores de condição crônica grave, com atenção a cardiopatas e diabéticos</li>
+          <li>Pessoas com histórico de alergia medicamentosa severa</li>
+          <li>Quem passa o dia na rua: motoboy de aplicativo, ciclista urbano, corredor</li>
+          <li>Famílias que cuidam de idosos</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Instituições</h3>
+        <p>Quem absorve o custo do evento adverso e do litígio que vem depois dele.</p>
+        <ul>
+          <li>Hospitais privados de pequeno e médio porte</li>
+          <li>Prontos-socorros e unidades de pronto atendimento</li>
+          <li>Operadoras de serviço de resgate móvel</li>
+          <li>Empresas com trabalhador exposto a risco e organizadores de evento esportivo</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ PLANOS ════════════════════════ -->
+<section class="secao" id="planos">
+  <div class="largura">
+    <h2>Planos</h2>
+    <p class="intro">Assinatura anual para pessoas, mensal por porte para instituições.</p>
+
+    <div class="planos-grade">
+      <article class="plano">
+        <h3>Kit Osíris</h3>
+        <p class="preco">R$ 119<span>por ano</span></p>
+        <ul>
+          <li>Cartão de carteira e adesivo NFC</li>
+          <li>Prontuário de emergência completo</li>
+          <li>Código de acesso alternativo</li>
+          <li>Trilha de acesso no portal</li>
+        </ul>
+      </article>
+      <article class="plano plano-realce">
+        <h3>Osíris Plus</h3>
+        <p class="preco">R$ 129<span>por ano</span></p>
+        <ul>
+          <li>Tudo do Kit</li>
+          <li>Pulseira em silicone, para uso contínuo</li>
+          <li>Reposição de tag inclusa</li>
+          <li>Lembrete de revisão dos dados</li>
+        </ul>
+      </article>
+      <article class="plano">
+        <h3>Instituições</h3>
+        <p class="preco">a partir de R$ 1.900<span>por mês</span></p>
+        <ul>
+          <li>Até 50 leitos: R$ 1.900</li>
+          <li>De 51 a 150 leitos: R$ 4.500</li>
+          <li>Acima de 150 leitos: R$ 7.500</li>
+          <li>Portal do profissional, implantação assistida e treinamento da equipe</li>
+        </ul>
+      </article>
+    </div>
+    <p class="nota-planos">O produto está em fase de piloto clínico. Instituições interessadas em
+    participar têm condições específicas durante o período.</p>
+  </div>
+</section>
+
+<!-- ════════════════════════ PERGUNTAS ════════════════════════ -->
+<section class="secao secao-creme" id="perguntas">
+  <div class="largura largura-estreita">
+    <h2>Perguntas que sempre vêm</h2>
+    <div class="perguntas">
+      <details>
+        <summary>E se a pessoa não estiver com a pulseira?</summary>
+        <p>O acesso continua por código de oito caracteres ou por busca autenticada por CPF. A
+        pulseira acelera, não habilita.</p>
+      </details>
+      <details>
+        <summary>Por que não usar a ficha médica que já existe no celular?</summary>
+        <p>Ela depende do aparelho do paciente estar intacto, carregado e acessível, e o conteúdo é
+        inteiramente autodeclarado. No cenário em que o Osíris é usado, o celular costuma ser a
+        primeira coisa que falta.</p>
+      </details>
+      <details>
+        <summary>Por que não biometria?</summary>
+        <p>Biometria só identifica contra uma base já cadastrada, então o paciente precisaria estar
+        cadastrado do mesmo jeito. Além disso, é dado pessoal sensível por definição e falha em
+        trauma, que é justamente o nosso cenário. Avaliamos e escolhemos redundância de acesso.</p>
+      </details>
+      <details>
+        <summary>E se o dado estiver desatualizado?</summary>
+        <p>Campo validado tem prazo de revisão. Vencido o prazo, o sistema mostra um alerta de
+        desatualização. Preferimos exibir a incerteza a escondê-la.</p>
+      </details>
+      <details>
+        <summary>Quem garante que o profissional preencheu certo?</summary>
+        <p>O registro no conselho e a responsabilidade profissional, como em qualquer prontuário. A
+        diferença é que aqui fica gravado quem escreveu, quando e o que mudou.</p>
+      </details>
+      <details>
+        <summary>Funciona em iPhone?</summary>
+        <p>O portal funciona em qualquer navegador. O aplicativo com leitura por aproximação está
+        disponível para Android, e a versão para iOS está no plano.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ EQUIPE E CONTATO ════════════════════════ -->
+<section class="secao secao-verde" id="contato">
+  <div class="guilhoche guilhoche-claro" aria-hidden="true"></div>
+  <div class="largura">
+    <h2>Quem está construindo</h2>
+    <div class="equipe">
+      <article>
+        <h3>Eduardo Kenji P. Fujie</h3>
+        <p class="papel">Plataforma, arquitetura de dados e segurança</p>
+        <p>Graduando em Engenharia da Computação na FIAP. Trabalhou com desenvolvimento backend para
+        instituições financeiras e com soluções de rede e segurança para clientes corporativos.</p>
+      </article>
+      <article>
+        <h3>Sttela Bastos Miranda</h3>
+        <p class="papel">Pesquisa, validação e relação com instituições</p>
+        <p>Graduanda em Engenharia da Computação na FIAP. Conduz a validação junto a profissionais de
+        saúde e a construção do modelo de negócio.</p>
+      </article>
+    </div>
+
+    <div class="contato-bloco">
+      <h3 class="contato-titulo">Quer conversar?</h3>
+      <p class="contato-texto">Estamos procurando unidades de saúde dispostas a hospedar o piloto
+      clínico, e profissionais de urgência dispostos a criticar o produto.</p>
+      <p class="contato-acoes">
+        <a class="botao botao-claro" href="mailto:edukenji2003@gmail.com?subject=Os%C3%ADris">Escrever para a equipe</a>
+        <a class="botao botao-vazado-claro" href="https://github.com/EdKenjiF5116/Os-ris-APP" target="_blank" rel="noopener">Ver o repositório do aplicativo</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="rodape">
+  <div class="largura rodape-grade">
+    <div>
+      <img src="assets/brasao-180.png" alt="" width="52" height="52">
+      <p class="rodape-nome">Osíris</p>
+      <p class="rodape-linha">Quando você não puder falar, nós falamos por você.</p>
+    </div>
+    <div>
+      <p class="rodape-titulo">Projeto</p>
+      <p>Trabalho de conclusão de curso em Engenharia da Computação, FIAP, 2026.</p>
+      <p>Em fase de protótipo e validação. Ainda não comercializado.</p>
+    </div>
+    <div>
+      <p class="rodape-titulo">Aviso</p>
+      <p>O Osíris não substitui avaliação clínica nem serviço de emergência. Em caso de urgência,
+      acione o SAMU pelo 192 ou o Corpo de Bombeiros pelo 193.</p>
+    </div>
+  </div>
+  <p class="rodape-fim">Os nomes e dados clínicos exibidos nesta página são fictícios, usados apenas
+  para demonstração.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
